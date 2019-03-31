@@ -1,0 +1,13 @@
+<div class="main" [ngStyle]="getStyle('main')">
+  <div class="row">
+    <div class="col grow">
+      <div class="upperArea">
+        <app-line-yazi [value]="getTime()"></app-line-yazi>
+      </div>
+    </div>
+    <div class="col">
+      <img [ngStyle]="getStyle('logo')" src="assets/logo.svg" />
+    </div>
+  </div>
+  <div class="row">TEST</div>
+</div>

@@ -1,0 +1,28 @@
+<h3>Adaylar</h3>
+
+<table>
+  <thead>
+  <tr>
+    <th>Adı</th>
+    <th>Logo</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let aday of adaylar | async">
+    <td>{{ aday.name }}</td>
+    <td><img height="25" [src]="aday.logo | image | secure | async" /></td>
+    <td>
+      <button type="button" (click)="remove(aday)">Sil</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>Ekle</h4>
+<form [formGroup]="fg" (submit)="add($event)">
+  <input type="text" formControlName="name" placeholder="Aday Adı" />
+  <input type="file" (change)="logoAdded($event)" placeholder="Aday Logo" />
+  <button type="submit">Ekle</button>
+</form>
+

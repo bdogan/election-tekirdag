@@ -1,0 +1,34 @@
+<h3>Partiler</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adı</th>
+      <th>Uzun Adı</th>
+      <th>Alias</th>
+      <th>Logo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let parti of partiler | async">
+      <td>{{ parti.name }}</td>
+      <td>{{ parti.title }}</td>
+      <td>{{ parti.alias }}</td>
+      <td><img height="25" [src]="parti.logo | image | secure | async" /></td>
+      <td>
+        <button type="button" (click)="remove(parti)">Sil</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Ekle</h4>
+<form [formGroup]="fg" (submit)="add($event)">
+  <input type="text" formControlName="name" placeholder="Parti Adı" />
+  <input type="text" formControlName="title" placeholder="Parti Uzun Adı" />
+  <input type="text" formControlName="alias" placeholder="Parti Takma Adı" />
+  <input type="file" (change)="logoAdded($event)" placeholder="Parti Logo" />
+  <button type="submit">Ekle</button>
+</form>
+

@@ -1,0 +1,31 @@
+<h3>Bölgeler</h3>
+<button type="button" (click)="updateNumbers()">Sayıları Güncelle</button>
+
+<form [formGroup]="acilanSandik">
+  <table>
+    <thead>
+    <tr>
+      <th>Adı</th>
+      <th>Açılan Sandık</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bolge of bolgeler | async">
+      <td>{{ bolge.name }}</td>
+      <td><input type="number" [formControlName]="bolge.$key" /></td>
+      <td>
+        <button type="button" (click)="remove(bolge)">Sil</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+
+<h4>Ekle</h4>
+<form [formGroup]="fg" (submit)="add($event)">
+  <input type="text" formControlName="name" placeholder="Bölge Adı" />
+  <input type="text" formControlName="acilan_sandik" placeholder="Açılan Sandık %" />
+  <button type="submit">Ekle</button>
+</form>
+

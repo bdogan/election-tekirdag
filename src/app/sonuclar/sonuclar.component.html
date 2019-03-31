@@ -1,0 +1,46 @@
+<h3>Sonuçlar</h3>
+<button type="button" (click)="updateVotes()">Sayıları Güncelle</button>
+
+<form [formGroup]="oySayilari">
+  <table>
+    <thead>
+    <tr>
+      <th>Bölge</th>
+      <th>Parti</th>
+      <th>Aday</th>
+      <th>Oy Sayısı</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let sonuc of sonuclar | async">
+      <td>{{ (sonuc.bolge | document | async)?.name }}</td>
+      <td>{{ (sonuc.parti | document | async)?.name }}</td>
+      <td>{{ (sonuc.aday | document | async)?.name }}</td>
+      <td><input type="number" [formControlName]="sonuc.$key" /></td>
+      <td>
+        <button type="button" (click)="remove(sonuc)">Sil</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+
+<h4>Ekle</h4>
+<form [formGroup]="fg" (submit)="add($event)">
+  <label for="aday">Aday</label>
+  <select formControlName="aday" id="aday">
+    <option *ngFor="let aday of adaylar | async" [value]="'/adaylar/' + aday.$key">{{aday.name}}</option>
+  </select>
+  <label for="parti">Parti</label>
+  <select formControlName="parti" id="parti">
+    <option *ngFor="let parti of partiler | async" [value]="'/partiler/' + parti.$key">{{parti.name}}</option>
+  </select>
+  <label for="bolge">Bölge</label>
+  <select formControlName="bolge" id="bolge">
+    <option *ngFor="let bolge of bolgeler | async" [value]="'/bolgeler/' + bolge.$key">{{bolge.name}}</option>
+  </select>
+  <input type="number" formControlName="oy_sayisi" placeholder="Oy Sayısı" />
+  <button type="submit">Ekle</button>
+</form>
+

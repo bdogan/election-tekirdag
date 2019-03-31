@@ -1,0 +1,6 @@
+<h3>Giriş</h3>
+<form [formGroup]="fg" (submit)="login()">
+  <input type="text" formControlName="email" placeholder="Mail Adresi" />
+  <input type="password" formControlName="password" placeholder="Şifre" />
+  <button type="submit">Giriş</button>
+</form>
